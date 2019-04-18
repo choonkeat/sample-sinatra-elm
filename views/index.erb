@@ -1,0 +1,33 @@
+<!doctype html>
+<%
+  people = [
+    { org: "alpha", name: "Alexander" },
+    { org: "alpha", name: "Anthony" },
+    { org: "alpha", name: "Andrew" },
+    { org: "beta", name: "Brooklynn" },
+    { org: "beta", name: "Bridget" },
+    { org: "beta", name: "Belle" },
+    { org: "beta", name: "Beatriz" },
+    { org: "charlie", name: "Clara" },
+    { org: "charlie", name: "Camilla" },
+    { org: "charlie", name: "Celeste" },
+    { org: "charlie", name: "Celine" },
+  ]
+%>
+<html lang="en">
+<head>
+</head>
+<body>
+  Organisation:
+  <select>
+    <% people.collect {|row| row[:org] }.uniq.each do |org| %>
+      <option data-name="<%= org %>"><%= org.capitalize %></option>
+    <% end %>
+  </select>
+  <select>
+    <% people.each do |row| %>
+      <option><%= row[:name] %></option>
+    <% end %>
+  </select>
+</body>
+</html>
