@@ -19,6 +19,14 @@ main =
         }
 
 
+{-| Record type (struct?) of what i'm recieving from js/ruby
+-}
+type alias Person =
+    { org : String
+    , name : String
+    }
+
+
 {-| Record type (struct?) of my app state
 -}
 type alias Model =
@@ -110,24 +118,3 @@ update msg model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
-
-
-
---
-
-
-{-| Record type (struct?) of what i'm recieving from js/ruby
--}
-type alias Person =
-    { org : String
-    , name : String
-    }
-
-
-{-| convert JSON to my Elm record
--}
-decodePerson : Json.Decode.Decoder Person
-decodePerson =
-    Json.Decode.map2 Person
-        (Json.Decode.field "org" Json.Decode.string)
-        (Json.Decode.field "name" Json.Decode.string)
