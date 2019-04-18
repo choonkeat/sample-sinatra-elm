@@ -18,6 +18,7 @@
 <head>
 </head>
 <body>
+  <div id="elm">
   Organisation:
   <select>
     <% people.collect {|row| row[:org] }.uniq.each do |org| %>
@@ -29,5 +30,13 @@
       <option><%= row[:name] %></option>
     <% end %>
   </select>
+  </div>
+  <script src="/Main.js" charset="utf-8"></script>
+  <script>
+    Elm.Main.init({
+      node: document.getElementById('elm'),
+      flags: { people: <%= people.to_json %> }
+    })
+  </script>
 </body>
 </html>
