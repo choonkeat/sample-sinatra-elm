@@ -79,7 +79,9 @@ orgSelector { chosenOrg, people } =
     let
         orgNames =
             people
+                -- people.inject(Dict.empty) {|dict,person| dict.merge(person.org => person.org) }
                 |> List.foldl (\person dict -> Dict.insert person.org person.org dict) Dict.empty
+                -- .keys
                 |> Dict.keys
 
         optionTag orgName =
@@ -98,6 +100,7 @@ peopleSelector : Model -> Html Msg
 peopleSelector { chosenOrg, people } =
     let
         orgPeople =
+            -- people.filter {|person| person.org ~= chosenOrg }
             List.filter (\person -> Just person.org == chosenOrg) people
     in
     select [] <|
